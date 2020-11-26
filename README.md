@@ -28,7 +28,7 @@
 | status_id       | integer   | null: false                       |
 | delivery_fee_id | integer   | null: false                       |
 | days_id         | integer   | null: false                       |
-| prefectures     | string    | null: false                       |
+| prefectures_id  | integer   | null: false                       |
 
 ### Association
 
@@ -49,15 +49,15 @@
 
 ## addresses テーブル
 
-| Column        | Type       | Options                        |
-| -------       | ---------- | ------------------------------ |
-| address       | string     | null: false,                   |
-| post          | integer    | null: false,                   |
-| prefectures   | string     | null: false,                   |
-| town          | string     | null: false,                   |
-| build         | string     |                                |
-| phone         | integer    | null: false,                   |
-| buyer_id      | references | null: false, foreign_key: true |
+| Column           | Type       | Options                        |
+| -------          | ---------- | ------------------------------ |
+| address          | string     | null: false,                   |
+| post             | integer    | null: false,                   |
+| prefectures_id   | integer    | null: false,                   |
+| town             | string     | null: false,                   |
+| build            | string     |                                |
+| phone            | integer    | null: false,                   |
+| buyer_id         | references | null: false, foreign_key: true |
 
 ### Association
 
