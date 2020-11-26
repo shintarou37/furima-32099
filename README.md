@@ -1,15 +1,15 @@
 # テーブル設計
 
 ## users テーブル
-| Colum           | Type   | Options                                |
-| --------        | ------ | ----------                             |
-| name            | string | null: false, unique: true              |
-| email           | string | null: false, unique: true              |
-| last_name       | string | null: false, /\A[０-９]+\z/(全角)       |
-| first_name      | string | null: false, /\A[０-９]+\z/(全角)       |
-| last_name_kana  | string | null: false, /\A[ァ-ヶー－]+\z/(全角カナ)|
-| first_name_kana | string | null: false, /\A[ァ-ヶー－]+\z/(全角カナ)|
-| birthday        | date   | null: false,                           |
+| Colum           | Type   | Options                   |
+| --------        | ------ | ----------                |
+| name            | string | null: false, unique: true |
+| email           | string | null: false, unique: true |
+| last_name       | string | null: false,              |
+| first_name      | string | null: false,              |
+| last_name_kana  | string | null: false,              |
+| first_name_kana | string | null: false,              |
+| birthday        | date   | null: false,              |
 
 ### Association
 
@@ -20,8 +20,8 @@
 
 | Column          | Type      | Options                           |
 | ------          | ------    | -----------                       |
-| name            | string    | null: false, maximum 40           |
-| explanation     | string    | null: false, maximum 1000         |
+| name            | string    | null: false,                      |
+| explanation     | string    | null: false,                      |
 | price           | integer   | null: false                       |
 | user            | references| null: false, foreign_key: true    |
 | category_id     | integer   | null: false                       |
