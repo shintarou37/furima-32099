@@ -3,8 +3,8 @@
 ## users テーブル
 | Colum           | Type   | Options                                |
 | --------        | ------ | ----------                             |
-| name            | string | null: false,                           |
-| email           | string | null: false,                           |
+| name            | string | null: false, unique: true              |
+| email           | string | null: false, unique: true              |
 | last_name       | string | null: false, /\A[０-９]+\z/(全角)       |
 | first_name      | string | null: false, /\A[０-９]+\z/(全角)       |
 | last_name_kana  | string | null: false, /\A[ァ-ヶー－]+\z/(全角カナ)|
