@@ -1,24 +1,66 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
+| Colum             | Type   | Options                   |
+| --------          | ------ | ----------                |
+| name              | string | null: false, unique: true |
+| email             | string | null: false, unique: true |
+| last_name         | string | null: false,              |
+| first_name        | string | null: false,              |
+| last_name_kana    | string | null: false,              |
+| first_name_kana   | string | null: false,              |
+| birthday          | date   | null: false,              |
+| encrypted_password| string | null: false,              |
 
-Things you may want to cover:
+### Association
 
-* Ruby version
+- has_many :buyers
+- has_many :items
 
-* System dependencies
+## items テーブル
 
-* Configuration
+| Column          | Type      | Options                           |
+| ------          | ------    | -----------                       |
+| name            | string    | null: false,                      |
+| explanation     | text      | null: false,                      |
+| price           | integer   | null: false                       |
+| user            | references| null: false, foreign_key: true    |
+| category_id     | integer   | null: false                       |
+| status_id       | integer   | null: false                       |
+| delivery_fee_id | integer   | null: false                       |
+| day_id          | integer   | null: false                       |
+| prefecture_id   | integer   | null: false                       |
 
-* Database creation
+### Association
 
-* Database initialization
+- belongs_to :user
+- has_one  :buyer
 
-* How to run the test suite
+## buyers テーブル
 
-* Services (job queues, cache servers, search engines, etc.)
+| Column    | Type       | Options                        |
+| ------    | ---------- | ------------------------------ |
+| user      | references | null: false, foreign_key: true |
+| item      | references | null: false, foreign_key: true |
 
-* Deployment instructions
+### Association
 
-* ...
+- belongs_to :item
+- belongs_to :user
+- has_one    :address
+
+## addresses テーブル
+
+| Column           | Type       | Options                        |
+| -------          | ---------- | ------------------------------ |
+| address          | string     | null: false,                   |
+| post             | string     | null: false,                   |
+| prefecture_id    | integer    | null: false,                   |
+| town             | string     | null: false,                   |
+| build            | string     |                                |
+| phone            | string     | null: false,                   |
+| buyer            | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :buyer
