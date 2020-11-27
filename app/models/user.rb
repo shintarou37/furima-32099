@@ -7,7 +7,7 @@ class User < ApplicationRecord
    validates :last_name,format: { with: /\A[ぁ-んァ-ン一-龥]/ }
    validates :first_name,format: { with: /\A[ぁ-んァ-ン一-龥]/ }
    validates :last_name_kana,format: { with: /\A[ァ-ヶー－]+\z/ }
-   validates :first_name_kana,format: { with: /\A[ァ-ヶー－]+\z/, message: '6文字以上の半角英数字で記入してください' }
+   validates :first_name_kana,format: { with: /\A[ァ-ヶー－]+\z/ }
    validates :birthday
    validates :name
    validates :email
