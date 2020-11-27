@@ -1,15 +1,16 @@
 # テーブル設計
 
 ## users テーブル
-| Colum           | Type   | Options                   |
-| --------        | ------ | ----------                |
-| name            | string | null: false, unique: true |
-| email           | string | null: false, unique: true |
-| last_name       | string | null: false,              |
-| first_name      | string | null: false,              |
-| last_name_kana  | string | null: false,              |
-| first_name_kana | string | null: false,              |
-| birthday        | date   | null: false,              |
+| Colum             | Type   | Options                   |
+| --------          | ------ | ----------                |
+| name              | string | null: false, unique: true |
+| email             | string | null: false, unique: true |
+| last_name         | string | null: false,              |
+| first_name        | string | null: false,              |
+| last_name_kana    | string | null: false,              |
+| first_name_kana   | string | null: false,              |
+| birthday          | date   | null: false,              |
+| encrypted_password| string | null: false,              |
 
 ### Association
 
@@ -21,7 +22,7 @@
 | Column          | Type      | Options                           |
 | ------          | ------    | -----------                       |
 | name            | string    | null: false,                      |
-| explanation     | string    | null: false,                      |
+| explanation     | text      | null: false,                      |
 | price           | integer   | null: false                       |
 | user            | references| null: false, foreign_key: true    |
 | category_id     | integer   | null: false                       |
