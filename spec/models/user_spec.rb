@@ -7,7 +7,7 @@ RSpec.describe User, type: :model do
     @user.first_name = 'あ'
     @user.first_name_kana = 'ア'
     @user.last_name_kana = 'ア'
-    @user.birthday = 1990 - 0o1 - 0o1
+    @user.birthday = 1990 - 01 - 01
   end
 
   describe 'ユーザー新規登録' do
