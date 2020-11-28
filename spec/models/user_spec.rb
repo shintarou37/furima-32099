@@ -16,13 +16,13 @@ RSpec.describe User, type: :model do
       it "ユーザー本名は、名字が必須であること" do
         @user.last_name = ""
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name can't be blank", "Last name is invalid")
+        expect(@user.errors.full_messages).to include("Last name can't be blank")
       end
 
       it "ユーザー本名は、名前が必須であること" do
         @user.first_name = ""
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name can't be blank", "First name is invalid")
+        expect(@user.errors.full_messages).to include("First name can't be blank")
       end
 
       it 'ニックネームが必須であること' do
@@ -34,7 +34,7 @@ RSpec.describe User, type: :model do
       it 'メールアドレスがない時' do
         @user.email = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("Email can't be blank", "Email can't be blank")
+        expect(@user.errors.full_messages).to include("Email can't be blank")
       end
 
       it "重複したemailが存在する場合登録できないこと" do
@@ -54,14 +54,14 @@ RSpec.describe User, type: :model do
         @user.password = ''
         @user.password_confirmation = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password can't be blank", "Password can't be blank", 'Password is too short (minimum is 6 characters)', 'Password is invalid')
+        expect(@user.errors.full_messages).to include("Password can't be blank")
       end
 
       it 'パスワードが6文字より少ない時' do
         @user.password = 'a'
         @user.password_confirmation = 'a'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)', 'Password is too short (minimum is 6 characters)', 'Password is invalid')
+        expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
       end
 
       it 'パスワードとパスワード（確認用）、値が一致しない' do
@@ -106,22 +106,22 @@ RSpec.describe User, type: :model do
       it "ユーザー本名のフリガナは、名前が必須であること" do
         @user.first_name_kana = ""
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name kana can't be blank", "First name kana is invalid")
+        expect(@user.errors.full_messages).to include("First name kana can't be blank")
       end
 
       it "ユーザー本名のフリガナは、名字が必須であること" do
         @user.last_name_kana = ""
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name kana can't be blank", "Last name kana is invalid")
+        expect(@user.errors.full_messages).to include("Last name kana can't be blank")
       end
   
-      it "ユーザー本名のフリガナは、全角（カタカナ）での入力が必須であること" do
+      it "ユーザー本名(苗字)のフリガナは、全角（カタカナ）での入力が必須であること" do
         @user.first_name_kana = "嗚呼"
         @user.valid?
         expect(@user.errors.full_messages).to include("First name kana is invalid")
       end
 
-      it "ユーザー本名のフリガナは、全角（カタカナ）での入力が必須であること" do
+      it "ユーザー本名(名前)のフリガナは、全角（カタカナ）での入力が必須であること" do
         @user.last_name_kana = "嗚呼"
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name kana is invalid")
