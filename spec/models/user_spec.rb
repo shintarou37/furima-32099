@@ -13,11 +13,16 @@ RSpec.describe User, type: :model do
     end
     context '新規登録がうまくいかない時' do
 
-      it "ユーザー本名は、名字と名前がそれぞれ必須であること" do
+      it "ユーザー本名は、名字が必須であること" do
         @user.last_name = ""
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name can't be blank", "Last name is invalid")
+      end
+
+      it "ユーザー本名は、名前が必須であること" do
         @user.first_name = ""
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name can't be blank", "Last name is invalid", "First name can't be blank", "First name is invalid")
+        expect(@user.errors.full_messages).to include("First name can't be blank", "First name is invalid")
       end
 
       it 'ニックネームが必須であること' do
@@ -86,25 +91,40 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password is invalid")
       end
-      it "ユーザー本名は、全角（漢字・ひらがな・カタカナ）での入力が必須であること" do
+      it "ユーザー本名(苗字)は、全角（漢字・ひらがな・カタカナ）での入力が必須であること" do
         @user.last_name = "a"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name is invalid")
+      end
+
+      it "ユーザー本名(名前)は、全角（漢字・ひらがな・カタカナ）での入力が必須であること" do
         @user.first_name = "a"
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name is invalid", "First name is invalid")
+        expect(@user.errors.full_messages).to include("First name is invalid")
       end
   
-      it "ユーザー本名のフリガナは、名字と名前でそれぞれ必須であること" do
+      it "ユーザー本名のフリガナは、名前が必須であること" do
         @user.first_name_kana = ""
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name kana can't be blank", "First name kana is invalid")
+      end
+
+      it "ユーザー本名のフリガナは、名字が必須であること" do
         @user.last_name_kana = ""
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name kana can't be blank", "Last name kana is invalid", "First name kana can't be blank", "First name kana is invalid")
+        expect(@user.errors.full_messages).to include("Last name kana can't be blank", "Last name kana is invalid")
       end
   
       it "ユーザー本名のフリガナは、全角（カタカナ）での入力が必須であること" do
         @user.first_name_kana = "嗚呼"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name kana is invalid")
+      end
+
+      it "ユーザー本名のフリガナは、全角（カタカナ）での入力が必須であること" do
         @user.last_name_kana = "嗚呼"
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name kana is invalid", "First name kana is invalid")
+        expect(@user.errors.full_messages).to include("Last name kana is invalid")
       end
   
       it "生年月日が必須であること" do
