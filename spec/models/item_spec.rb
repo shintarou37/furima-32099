@@ -37,7 +37,7 @@ RSpec.describe Item, type: :model do
       end
 
       it 'カテゴリーの情報がid１では保存できない' do
-        @item.category_id = 1
+        @item.category_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Category must be other than 1")
       end
@@ -49,7 +49,7 @@ RSpec.describe Item, type: :model do
       end
 
       it '商品の状態についての情報がid１では保存できない' do
-        @item.status_id = 1
+        @item.status_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Status must be other than 1")
       end
@@ -61,7 +61,7 @@ RSpec.describe Item, type: :model do
       end
 
       it '配送料の負担についての情報がid１では保存できない' do
-        @item.delivery_fee_id = 1
+        @item.delivery_fee_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery fee must be other than 1")
       end
@@ -73,7 +73,7 @@ RSpec.describe Item, type: :model do
       end
 
       it '発送元の地域についての情報がid1では保存できないこと' do
-        @item.prefecture_id = 1
+        @item.prefecture_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
       end
@@ -85,7 +85,7 @@ RSpec.describe Item, type: :model do
       end
 
       it '発送までの日数についての情報がid1では保存できないこと' do
-        @item.day_id = 1
+        @item.day_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Day must be other than 1")
       end
@@ -97,13 +97,13 @@ RSpec.describe Item, type: :model do
       end
 
       it '価格の範囲が、¥300より安くては保存できない' do
-        @item.price = 299
+        @item.price = '299'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
       end
 
       it '価格の範囲が、¥9,999,999より高くては保存できない' do
-        @item.price = 10000000
+        @item.price = '10000000'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
       end
