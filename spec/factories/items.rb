@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :item do
     association :user
     name            { Faker::Name.initials(number: 2) }
-    explanation     { "これは私の出品した商品です" }
+    explanation     { 'これは私の出品した商品です' }
     price           { Faker::Number.number(digits: 4) }
     category_id     { 2 }
     status_id       { 2 }
