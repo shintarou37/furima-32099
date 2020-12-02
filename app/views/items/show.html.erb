@@ -21,12 +21,12 @@
         <%= @items.delivery_fee.name %>
       </span>
     </div>
-
+    <%# < 商品削除機能> %>
     <% if user_signed_in? && current_user.id == @items.user_id %>
     <%= link_to '商品の編集', edit_item_path(@items.id), method: :get, class: "item-red-btn" %>
     <p class='or-text'>or</p>
     <%= link_to '削除', item_path(@items.id), method: :delete, class:'item-destroy' %>
-    
+    <%# < 商品削除機能> %>
 
     <%# 商品が売れていない場合はこちらを表示しましょう %>
     <% elsif user_signed_in? %>

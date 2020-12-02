@@ -33,12 +33,13 @@ class ItemsController < ApplicationController
       render :edit
     end
   end
-
-  # def destroy
-  #   @items = Item.find(params[:id])
-  #   @items.destroy
-  #   redirect_to root_path
-  # end
+  # < 商品削除機能>
+  def destroy
+    @items = Item.find(params[:id])
+    @items.destroy
+    redirect_to root_path
+  end
+  # < 商品削除機能>
 
   private
 
