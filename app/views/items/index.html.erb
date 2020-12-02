@@ -127,37 +127,34 @@
     <ul class='item-lists'>
 
       <%# 商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
-      <%# <% if @items.size != 0 %> %>
-        <%# <% @items.each do |item| %> %>
+      <% if @items.size != 0 %>
+        <% @items.each do |item| %>
         <li class='list'>
-          <%# <%= link_to item_path(item.id) do %> %>
+          <%= link_to item_path(item.id) do %>
           <div class='item-img-content'>
-            <%# <%= image_tag item.image, class: "item-img"  %> %>
-
+            <%= image_tag item.image, class: "item-img"  %>
             <%# 商品が売れていればsold outを表示しましょう %>
             <div class='sold-out'>
               <span>Sold Out!!</span>
             </div>
             <%# //商品が売れていればsold outを表示しましょう %>
-
           </div>
           <div class='item-info'>
             <h3 class='item-name'>
-              <%# <%= item.name %> %>
+              <%= item.name %>
             </h3>
             <div class='item-price'>
-              <%# <span><%= item.price %>円<br> %>
-              <%# <%= item.delivery_fee.name</span> %> %>
+              <span><%= item.price %>円<br><%= item.delivery_fee.name %></span>
               <div class='star-btn'>
                 <%= image_tag "star.png", class:"star-icon" %>
                 <span class='star-count'>0</span>
               </div>
             </div>
           </div>
-          <%# <% end %> %>
+          <% end %>
         </li>
-        <%# <% end %> %>
-      <%# <% else %> %>
+        <% end %>
+      <% else %>
       
       <%# //商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
 
@@ -182,13 +179,13 @@
         </li>
       <%# //商品がある場合は表示されないようにしましょう %>
       <%# /商品がない場合のダミー %>
-      <%# <% end %> %>
+      <% end %>
     </ul>
   </div>
   <%# /商品一覧 %>
 </div>
-<%# <%= link_to(new_item_path, class: 'purchase-btn') do %> %>
+<%= link_to(new_item_path, class: 'purchase-btn') do %>
   <span class='purchase-btn-text'>出品する</span>
   <%= image_tag 'icon_camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
-<%# <% end %> %>
+<% end %>
 <%= render "shared/footer" %>
