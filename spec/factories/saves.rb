@@ -1,9 +1,5 @@
 FactoryBot.define do
   factory :save do
-    # association :user
-    # association :item
-    # association :address
-
     address         { "123-1234" }
     prefecture_id   { 2 }
     town            { "ルビー町"}

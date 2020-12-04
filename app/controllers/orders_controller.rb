@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   before_action :redirect
   
   def index
-    @save = Order.new
+    @save = Save.new
   end
 
   def create
@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).permit(:address,:prefecture_id,:town,:post,:build,:phone,:price).merge(user_id: current_user.id,item_id: params[:item_id],token: params[:token])
+    params.require(:save).permit(:address,:prefecture_id,:town,:post,:build,:phone,:price).merge(user_id: current_user.id,item_id: params[:item_id],token: params[:token])
   end
 
   def pay_item
