@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :item
   before_action :redirect
-  
+
   def index
     @save = Save.new
   end
@@ -19,17 +19,18 @@ class OrdersController < ApplicationController
   end
 
   private
+
   def order_params
-    params.require(:save).permit(:address,:prefecture_id,:town,:post,:build,:phone,:price).merge(user_id: current_user.id,item_id: params[:item_id],token: params[:token])
+    params.require(:save).permit(:address, :prefecture_id, :town, :post, :build, :phone, :price).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-      Payjp::Charge.create(
-        amount: @item.price,
-        card: order_params[:token],
-        currency: 'jpy' 
-      )   
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+    Payjp::Charge.create(
+      amount: @item.price,
+      card: order_params[:token],
+      currency: 'jpy'
+    )
   end
 
   def item
@@ -37,9 +38,6 @@ class OrdersController < ApplicationController
   end
 
   def redirect
-    if current_user.id == @item.user_id
-      redirect_to root_path
-    end
+    redirect_to root_path if current_user.id == @item.user_id
   end
-
 end

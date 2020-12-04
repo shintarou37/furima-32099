@@ -16,46 +16,46 @@ RSpec.describe Save, type: :model do
       it '郵便番号がない場合' do
         @save.address = nil
         @save.valid?
-        expect(@save.errors.full_messages).to include ("Address can't be blank")
+        expect(@save.errors.full_messages).to include("Address can't be blank")
       end
 
       it '都道府県がない場合' do
         @save.prefecture_id = nil
         @save.valid?
-        expect(@save.errors.full_messages).to include ("Prefecture can't be blank")
+        expect(@save.errors.full_messages).to include("Prefecture can't be blank")
       end
       it '市区町村がない場合' do
         @save.town = nil
         @save.valid?
-        expect(@save.errors.full_messages).to include ("Town can't be blank")
+        expect(@save.errors.full_messages).to include("Town can't be blank")
       end
       it '番地がない場合' do
         @save.post = nil
         @save.valid?
-        expect(@save.errors.full_messages).to include ("Post can't be blank")
+        expect(@save.errors.full_messages).to include("Post can't be blank")
       end
       it '電話番号がない場合' do
         @save.phone = nil
         @save.valid?
-        expect(@save.errors.full_messages).to include ("Phone can't be blank")
+        expect(@save.errors.full_messages).to include("Phone can't be blank")
       end
 
       it '郵便番号にはハイフンが必要であること' do
         @save.address = '1231234'
         @save.valid?
-        expect(@save.errors.full_messages).to include ("Address is invalid")
+        expect(@save.errors.full_messages).to include('Address is invalid')
       end
 
       it '電話番号にはハイフンが不要であること' do
-        @save.phone = "090-1234-1234"
+        @save.phone = '090-1234-1234'
         @save.valid?
-        expect(@save.errors.full_messages).to include("Phone is invalid")
+        expect(@save.errors.full_messages).to include('Phone is invalid')
       end
 
       it '電話番号は11文字以内であること' do
-        @save.phone = "090-1234-1234"
+        @save.phone = '090-1234-1234'
         @save.valid?
-        expect(@save.errors.full_messages).to include("Phone is invalid")
+        expect(@save.errors.full_messages).to include('Phone is invalid')
       end
     end
   end
