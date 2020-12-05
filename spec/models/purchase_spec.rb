@@ -68,6 +68,18 @@ RSpec.describe Purchase, type: :model do
         @save.valid?
         expect(@save.errors.full_messages).to include("Token can't be blank")
       end
+
+      it 'user_idがない場合は保存できない' do
+        @save.user_id = nil
+        @save.valid?
+        expect(@save.errors.full_messages).to include("User can't be blank")
+      end
+
+      it 'item_idがない場合は保存できない' do
+        @save.item_id = nil
+        @save.valid?
+        expect(@save.errors.full_messages).to include("Item can't be blank")
+      end
     end
   end
 end
