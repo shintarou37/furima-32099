@@ -4,11 +4,11 @@ class OrdersController < ApplicationController
   before_action :redirect
 
   def index
-    @save = Save.new
+    @save = Purchase.new
   end
 
   def create
-    @save = Save.new(order_params)
+    @save = Purchase.new(order_params)
     if @save.valid?
       pay_item
       @save.save
@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:save).permit(:address, :prefecture_id, :town, :post, :build, :phone, :price).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+    params.require(:purchase).permit(:address, :prefecture_id, :town, :post, :build, :phone, :price).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
   def pay_item
@@ -38,6 +38,6 @@ class OrdersController < ApplicationController
   end
 
   def redirect
-    redirect_to root_path if current_user.id == @item.user_id
+    redirect_to root_path if current_user.id == @item.user_id || @item.order != nil
   end
 end

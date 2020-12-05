@@ -1,13 +1,18 @@
 require 'rails_helper'
 
-RSpec.describe Save, type: :model do
+RSpec.describe Purchase, type: :model do
   before do
-    @save = FactoryBot.build(:save)
+    @save = FactoryBot.build(:purchase)
   end
 
   describe '商品購入機能' do
     context '商品購入機能が成功する' do
       it '情報を正しく入力したら決済ができる' do
+        expect(@save).to be_valid
+      end
+
+      it '建物名がなくとも登録ができる' do
+        @save.build = nil
         expect(@save).to be_valid
       end
     end
@@ -20,9 +25,9 @@ RSpec.describe Save, type: :model do
       end
 
       it '都道府県がない場合' do
-        @save.prefecture_id = nil
+        @save.prefecture_id = 1
         @save.valid?
-        expect(@save.errors.full_messages).to include("Prefecture can't be blank")
+        expect(@save.errors.full_messages).to include("Prefecture must be other than 1")
       end
       it '市区町村がない場合' do
         @save.town = nil
@@ -53,9 +58,15 @@ RSpec.describe Save, type: :model do
       end
 
       it '電話番号は11文字以内であること' do
-        @save.phone = '090-1234-1234'
+        @save.phone = '123456789123456'
         @save.valid?
         expect(@save.errors.full_messages).to include('Phone is invalid')
+      end
+
+      it 'tokenがない場合は保存できない' do
+        @save.token = nil
+        @save.valid?
+        expect(@save.errors.full_messages).to include("Token can't be blank")
       end
     end
   end

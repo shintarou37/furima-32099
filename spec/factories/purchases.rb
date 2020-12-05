@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :save do
+  factory :purchase do
     address         { '123-1234' }
     prefecture_id   { 2 }
     town            { 'ルビー町' }

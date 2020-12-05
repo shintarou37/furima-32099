@@ -1,4 +1,4 @@
-class Save
+class Purchase
   include ActiveModel::Model
 
   attr_accessor :address, :prefecture_id, :town, :post, :build, :phone, :order_id, :user_id, :item_id, :token
@@ -8,7 +8,7 @@ class Save
     validates :phone, format: { with: /\A\d{10}$|^\d{11}\z/ }
     validates :post
     validates :town
-    validates :prefecture_id
+    validates :prefecture_id,numericality: { other_than: 1 }
     validates :token
   end
 
