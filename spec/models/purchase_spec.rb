@@ -58,7 +58,7 @@ RSpec.describe Purchase, type: :model do
       end
 
       it '電話番号は11文字以内であること' do
-        @save.phone = '123456789123456'
+        @save.phone = '123456789123'
         @save.valid?
         expect(@save.errors.full_messages).to include('Phone is invalid')
       end
